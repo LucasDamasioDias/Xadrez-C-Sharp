@@ -1,5 +1,7 @@
 ﻿using tabuleiro;
+using Xadrez;
 
-Posicao P;
+Tabuleiro tab = new Tabuleiro(8,8);
 
-P = new Posicao(3,4);
+Tela.imprimirTabuleiro(tab);
+Console.ReadLine();

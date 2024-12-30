@@ -2,12 +2,21 @@
 using xadrez;
 using Xadrez;
 
-Tabuleiro tab = new Tabuleiro(8,8);
+PartidaDeXadrez partida = new PartidaDeXadrez();
+
+while (!partida.terminada)
+{
+    Console.Clear();
+    Tela.imprimirTabuleiro(partida.tab);
+
+    Console.Write("Origem: ");
+    Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
+    Console.Write("Destino: ");
+    Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
+    partida.executarMovimento(origem, destino);
+}
 
 
-tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(0, 0));
-tab.colocarPeca(new Torre(tab, Cor.Branca), new Posicao(1, 3));
-
-Tela.imprimirTabuleiro(tab);
+Tela.imprimirTabuleiro(partida.tab);
 
 Console.ReadLine();

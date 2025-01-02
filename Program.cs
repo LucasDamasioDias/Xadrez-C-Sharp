@@ -11,11 +11,8 @@ try
         try
         {
             Console.Clear();
-            Tela.imprimirTabuleiro(partida.tab);
-            Console.WriteLine();
-            Console.WriteLine("Turno: " + partida.turno);
-            Console.WriteLine("Aguardando jogada de: " + partida.jogadorAtual);
-            Console.WriteLine();
+            Tela.imprimirPartida(partida);
+
 
             Console.Write("Origem: ");
             Posicao origem = Tela.lerPosicaoXadrez().toPosicao();

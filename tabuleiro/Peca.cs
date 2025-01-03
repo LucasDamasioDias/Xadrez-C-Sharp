@@ -42,5 +42,10 @@
         {
         qteMovimentos++; 
         }
+
+        public void decrementarQuantidadeMovimentos()
+        {
+            qteMovimentos--;
+        }
     }
 }

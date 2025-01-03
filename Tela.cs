@@ -1,4 +1,5 @@
-﻿using tabuleiro;
+﻿using System.Runtime.Intrinsics.X86;
+using tabuleiro;
 using xadrez;
 
 namespace Xadrez
@@ -56,14 +57,20 @@ namespace Xadrez
         {
             for (int i = 0; i < tab.linhas; i++)
             {
-                Console.Write(8 - i + " ");
+                ConsoleColor aux = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write(8 - i);
+                Console.ForegroundColor = aux;
                 for (int j = 0; j < tab.colunas; j++)
                 {                  
                     imprimirPeca(tab.peca(i,j));                    
                 }
                 Console.WriteLine();
-            }            
-            Console.WriteLine("   A  B  C  D  E  F  G  H");
+            }
+            ConsoleColor aux2 = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("  A  B  C  D  E  F  G  H");
+            Console.ForegroundColor = aux2;
         }
 
         public static void imprimirTabuleiro(Tabuleiro tab, bool[,] posicoesPossiveis)
@@ -88,8 +95,8 @@ namespace Xadrez
                     Console.BackgroundColor = fundoOriginal;
                 }
                 Console.WriteLine();
-            }
-            Console.WriteLine("   A  B  C  D  E  F  G  H");
+            }       
+            Console.WriteLine("   A  B  C  D  E  F  G  H");            
             Console.BackgroundColor = fundoOriginal;
         }
 

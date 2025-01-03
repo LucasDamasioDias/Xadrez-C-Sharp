@@ -36,7 +36,8 @@ try
         }
     }
 
-    Tela.imprimirTabuleiro(partida.tab);
+    Console.Clear();
+    Tela.imprimirPartida(partida);
 
     Console.ReadLine();
 }

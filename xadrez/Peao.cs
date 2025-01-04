@@ -23,7 +23,7 @@ namespace xadrez
 
         private bool livre(Posicao pos)
         {
-            return tab.peca(pos) != null;
+            return tab.peca(pos) == null;
         }
         public override bool[,] movimentosPossiveis()
         {

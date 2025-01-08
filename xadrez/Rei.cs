@@ -75,31 +75,33 @@ namespace xadrez
                 mat[pos.linha, pos.coluna] = true;
             }
 
-            if(qteMovimentos == 0 && !partida.xeque)
-            {
+            if (qteMovimentos == 0 && !partida.xeque)
+            {              
                 Posicao T1 = new Posicao(pos.linha, pos.coluna + 3);
-                if (testeRoque(T1))
+                if (tab.posicaoValida(T1) && testeRoque(T1))
                 {
                     Posicao p1 = new Posicao(pos.linha, pos.coluna + 1);
                     Posicao p2 = new Posicao(pos.linha, pos.coluna + 2);
-                    if(tab.peca(p1) == null && tab.peca(p2) == null)
+                    if (tab.posicaoValida(p1) && tab.posicaoValida(p2) &&
+                        tab.peca(p1) == null && tab.peca(p2) == null)
                     {
                         mat[pos.linha, pos.coluna + 2] = true;
                     }
                 }
 
                 Posicao T2 = new Posicao(pos.linha, pos.coluna - 4);
-                if (testeRoque(T2))
+                if (tab.posicaoValida(T2) && testeRoque(T2))
                 {
                     Posicao p1 = new Posicao(pos.linha, pos.coluna - 1);
                     Posicao p2 = new Posicao(pos.linha, pos.coluna - 2);
                     Posicao p3 = new Posicao(pos.linha, pos.coluna - 3);
-                    if (tab.peca(p1) == null && tab.peca(p2) == null && tab.peca(p3) == null)
+                    if (tab.posicaoValida(p1) && tab.posicaoValida(p2) && tab.posicaoValida(p3) &&
+                        tab.peca(p1) == null && tab.peca(p2) == null && tab.peca(p3) == null)
                     {
                         mat[pos.linha, pos.coluna - 2] = true;
                     }
                 }
-            }            
+            }
             return mat;
         }
 

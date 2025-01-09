@@ -124,6 +124,50 @@ namespace xadrez
                 desfazMovimento(origem, destino, pecaCapturada);
                 throw new TabuleiroException("Você não pode se colocar em Xeque!");
             }
+            Peca p = tab.peca(destino);
+            if (p is Peao)
+            {
+                if ((p.cor == Cor.Branca && destino.linha == 0) || (p.cor == Cor.Preta && destino.linha == 7))
+                {
+                    Console.WriteLine("Peão atingiu o final do tabuleiro! Escolha uma peça para promoção:");
+                    Console.WriteLine("T = Torre");
+                    Console.WriteLine("B = Bispo");
+                    Console.WriteLine("C = Cavalo");
+                    Console.WriteLine("D = Dama");
+                                       
+                    Console.Write("Digite sua escolha: ");
+                    string escolha = Console.ReadLine()?.ToUpper();
+
+                    Peca novaPeca;
+
+                        switch (escolha)
+                        {
+                            case "T":
+                                novaPeca = new Torre(tab, p.cor);
+                                break;
+
+                            case "B":
+                                novaPeca = new Bispo(tab, p.cor);
+                                break;
+
+                            case "C":
+                                novaPeca = new Cavalo(tab, p.cor);
+                                break;
+
+                            case "D":
+                                novaPeca = new Dama(tab, p.cor);
+                                break;
+
+                            default:
+                                throw new TabuleiroException("Peça inválida, selecione novamente.");
+                        }                        
+                        p = tab.retirarPeca(destino);
+                        pecas.Remove(p);
+                        tab.colocarPeca(novaPeca, destino);
+                        pecas.Add(novaPeca);
+                }
+                    
+            }
             if (estaEmXeque(adversaria(jogadorAtual)))
             {
                 xeque = true;
@@ -140,8 +184,7 @@ namespace xadrez
             {
                 turno++;
                 mudaJogador();
-            }
-            Peca p = tab.peca(destino);
+            }            
             if (p is Peao && (destino.linha == origem.linha + 2 || destino.linha == origem.linha - 2))
             {
                 vulneravelEnPassant = p;
